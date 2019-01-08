@@ -13,6 +13,8 @@
 #
 
 class Item < ApplicationRecord
+	validates_inclusion_of :discount_percentage, :in => 0..100
+	
 	def price
 		return original_price unless has_discount
 
