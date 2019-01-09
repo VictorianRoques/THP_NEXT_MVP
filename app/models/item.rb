@@ -14,7 +14,8 @@
 
 class Item < ApplicationRecord
   validates :discount_percentage, inclusion: { in: 0..100 }
-
+  has_many :categorizations, dependent: :destroy
+  has_many :items, through: :categorizations
   def price
     return original_price unless has_discount
 
