@@ -13,15 +13,15 @@
 #
 
 class Item < ApplicationRecord
-	validates_inclusion_of :discount_percentage, :in => 0..100
-	
-	def price
-		return original_price unless has_discount
+  validates :discount_percentage, inclusion: { in: 0..100 }
 
-		original_price - (original_price * discount_percentage / 100)
+  def price
+    return original_price unless has_discount
+
+    original_price - (original_price * discount_percentage / 100)
   end
 
-	def self.average_price
-		Item.all.inject(0) { |sum, item| sum + item.price }
-	end
+  def self.average_price
+    Item.all.inject(0) { |sum, item| sum + item.price }
+  end
 end

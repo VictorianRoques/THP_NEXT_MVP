@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   get '/home', to: 'home#landing_page'
 
   namespace 'administration' do
-		resources :items
+    resources :items
   end
 end
